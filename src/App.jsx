@@ -9,6 +9,8 @@ import {
   RouterProvider 
 } from "react-router-dom"
 
+
+import Loader from "./components/Loader"
 const Login = lazy (() => import('./pages/Login'))
 const Layout = lazy (() => import('./pages/Layout'))
 const Signup = lazy (() => import('./pages/Signup'))
@@ -30,7 +32,7 @@ function App() {
   ))
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <RouterProvider router={routes} />
     </Suspense>
   )

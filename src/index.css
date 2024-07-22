@@ -9,6 +9,21 @@
     --text-secondary-color: #282C34;
 }
 
+html {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background:#3f3e41;
+    border-radius: 10px;
+}
+
+
 .btn-shine {
     position: relative;
     padding: 12px 48px;
@@ -28,6 +43,7 @@
     font-family: "Poppins", sans-serif;
     font-size: 1.5rem;
 }
+
 @-moz-keyframes shine {
     0% {
         background-position: 0;
@@ -63,6 +79,7 @@
         background-position: 180px;
     }
 }
+
 @keyframes shine {
     0% {
         background-position: 0;
@@ -72,5 +89,120 @@
     }
     100% {
         background-position: 180px;
+    }
+}
+
+.card {
+    /* background: var(--light-background); */
+    font-family: inherit;
+    position: relative;
+    border-radius: 8px;
+    border: 1px dashed rgba(124, 121, 121, 0.329);
+}
+
+
+.quote {
+    color: rgb(223, 248, 134);
+    padding-left: 30px;
+    position: relative;
+    opacity: .2;
+}
+
+.card-name {
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 35px;
+    line-height: 23px;
+}
+
+.body-text {
+    font-weight: 900;
+    padding: 25px 40px 0;
+    color: #7bf4f8;
+    opacity: .6;
+    line-height: 23px;
+    overflow-wrap: break-word;
+}
+
+.author {
+    margin-top: 4px;
+    opacity: 0;
+    transition: 0.5s; 
+}
+
+.card:hover .author {
+    opacity: 1;
+}
+
+.pic {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(158, 196, 21);
+    border-radius: 50%;
+}
+
+.author-container {
+    display: flex;
+    align-items: center;
+}
+
+.author {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: rgba(204, 226, 226, 0.534);
+    bottom: 0.2rem;
+    left: 9rem;
+}
+
+.author span {
+    font-size: 1rem;
+    opacity: .3;
+}
+
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px dotted #ffffffa4;
+    border-style: solid solid dotted dotted;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 2s linear infinite;
+}
+.loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px dotted var(--primary-color);
+    opacity: .7;
+    border-style: solid solid dotted;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    animation: rotationBack 1s linear infinite;
+    transform-origin: center center;
+}
+
+@keyframes rotation {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
+    }
+}
+@keyframes rotationBack {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(-360deg);
     }
 }
