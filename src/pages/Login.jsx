@@ -72,7 +72,8 @@ function Login() {
             <p 
                 className="cursor-pointer hover:text-blue-100 absolute bottom-3 underline decoration-wavy text-blue-200 opacity-[.5]"
                 onClick={() => {
-                    navigate('/marketplace')
+                    navigate('/')
+                    localStorage.setItem('usertype', 'guest')
                 }}
             >
                 continue as guest
