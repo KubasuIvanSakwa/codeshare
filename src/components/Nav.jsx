@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
+import dummyuser from '../../public/user.svg'
+import Dropdown from "../../public/drop-down.svg"
 
 function Nav() {
 
@@ -8,9 +10,9 @@ function Nav() {
 
     return (
         <nav className="">
-            <ul className="flex bg-white/20 justify-end p-3 gap-3 text-[1.1rem] capitalize text-white/80">
+            <ul className=" relative flex  justify-end p-3 gap-3 text-[1.1rem] capitalize text-white/80">
                 { 
-                    location.pathname === '/profile' &&
+                    location.pathname === '/home/profile' &&
                     <li>
                         <Link
                         to=""
@@ -26,24 +28,28 @@ function Nav() {
                     user === 'guest' ? 
                         <li>
                             {
-                                location.pathname !== '/profile' &&  
+                                location.pathname !== '/home/profile' &&  
                                 <Link
                                     to="/login"
-                                    className="hover:text-white/50"
+                                    className="hover:bg-[#3f4041]/50 bg-[#3f4041] text-white p-2 w-fit rounded-lg inline-flex"
                                 >
-                                    Login
+                                    Sign In or Create Account
                                 </Link>
                             }
                         </li>
                     :
                     <li>
                         {
-                            location.pathname !== '/profile' &&  
+                            location.pathname !== '/home/profile' &&  
                             <Link
                                 to="/profile"
-                                className="hover:text-white/50"
+                                className="flex items-center"
                             >
-                                Profile
+                                <p className="hover:bg-[#3f4041]/50 bg-[#3f4041] text-white p-2 gap-2 w-fit rounded-l-lg inline-flex">
+                                    <img src={Dropdown}/>
+                                    Kubasu Ivan Sakwa
+                                </p>
+                                <div className="bg-[#3f4041] p-1 rounded-r-lg"><img src={dummyuser}/></div>
                             </Link>
                         }
                     </li>
@@ -53,7 +59,7 @@ function Nav() {
                     user !== 'guest' &&
                     <li>  
                         <Link
-                            to="/profile/upload"
+                            to="/home/profile/upload"
                             className="hover:text-white/50"
                         >
                             upload

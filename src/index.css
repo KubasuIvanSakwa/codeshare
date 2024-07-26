@@ -38,6 +38,11 @@ html {
     opacity: .6;
 }
 
+.card__content {
+    -webkit-mask-image: linear-gradient(black, transparent);
+    mask-image: linear-gradient(black, transparent);
+}
+
 
 .btn-shine {
     position: relative;

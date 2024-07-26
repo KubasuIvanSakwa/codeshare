@@ -22,12 +22,12 @@ function App() {
 
   const routes = createBrowserRouter(createRoutesFromElements(
     <Route>
-      <Route path="/companyprofile">
+      <Route path="/">
         <Route index element={<Landingpage />} />
       </Route>
-      <Route path="/" element={<Layout />}>
-        <Route path="/marketplace" element={<MarketPlace />} />
-        <Route path="/profile" element={<Profile />} />
+      <Route path="/home" element={<Layout />}>
+        <Route path="marketplace" element={<MarketPlace />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
