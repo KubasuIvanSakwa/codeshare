@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.svg";
-import googleLogo from "../assets/googleLogo.svg";
-import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from '../../firebase-config';
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import logo from "../assets/logo.svg"
+import googleLogo from "../assets/googleLogo.svg"
 
 
 function Login() {
@@ -10,28 +9,6 @@ function Login() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const navigate = useNavigate()
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            navigate('/home/marketplace');
-          }
-        });
-    
-        return () => unsubscribe();
-      }, [navigate]);
-
-
-    const handleGoogleSignIn = async () => {
-        const provider = new GoogleAuthProvider();
-        try {
-          const result = await signInWithPopup(auth, provider);
-          const user = result.user;
-          console.log('Signed in user:', user);
-        } catch (error) {
-          console.error('Google Sign-In failed:', error);
-        }
-      };
 
     return (
         <section className="relative flex flex-col w-fulf text-white h-[100vh] justify-center items-center bg-[#23272F]">
@@ -89,7 +66,7 @@ function Login() {
                 // onClick={handleClick}
                 className="rounded-full p-2 mt-4 w-[4rem] bg-none flex justify-center items-center self-center shadow-lg text-white/80  hover:bg-white/20 hover:text-white"
             >
-                <img src={googleLogo} onClick={handleGoogleSignIn}/>
+                <img src={googleLogo}/>
             </button>
 
             <p 
