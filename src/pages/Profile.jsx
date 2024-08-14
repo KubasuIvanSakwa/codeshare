@@ -1,8 +1,11 @@
 import Upload from '../../public/upload.svg'
 import Reactlogo from '../../public/reactlogo.svg'
 import Card from '../components/Card'
+import { useRef } from 'react'
 
 function Profile() {
+    const uploadRef = useRef(null)
+    const displayUpload = localStorage.getItem('displayUpload')
 
     return (
         <section className="p-2 flex justify-center h-[80vh] overflow-y-scroll">
@@ -20,7 +23,12 @@ function Profile() {
                         </div>
                     </div>
 
-                    <div className='cursor-pointer w-[20%] bg-[#434A56] h-[12rem] rounded-3xl flex justify-center items-center'>
+                    <div
+                        onClick={() => {
+                            localStorage.setItem('displayUpload', 'show')
+                        }}
+
+                        className='cursor-pointer w-[20%] bg-[#434A56] h-[12rem] rounded-3xl flex justify-center items-center'>
                         <img src={Upload} className="w-[5rem] opacity-60"/>
                     </div>
                 </section>
@@ -42,15 +50,35 @@ function Profile() {
                 </section>
             </section>
 
-            <section className="absolute flex w-[100%] h-[98vh] top-2 z-[60] bg-[#23272F]/70 backdrop-blur-sm justify-center p-2">
+            {displayUpload === 'show' && <section ref={uploadRef} className="absolute flex w-[100%] h-[98vh] top-0 z-[60] bg-[#23272F]/70 backdrop-blur-sm justify-center p-2">
                     <section className="w-[50%] rounded-3xl bg-[#23272F] shadow-lg border border-white/20">
                         <div className='flex w-full pt-2 justify-end pr-2 font-extrabold'>
-                            <p className=' w-[2rem] h-[2rem] rounded-full p-1 flex hover:bg-white/20 cursor-pointer items-center justify-center text-white/70 border'>
+                            <p 
+                                onClick={() => {
+                                    const displayinnerUpload = localStorage.getItem('displayUpload')
+                                    console.log(displayinnerUpload)
+                                    if (displayinnerUpload === 'show'){
+                                        uploadRef.current.classList.add('hidden')
+                                        localStorage.setItem('displayUpload', 'hidden')
+                                    }
+                                }}
+                                className=' w-[2rem] h-[2rem] rounded-full p-1 flex hover:bg-white/20 cursor-pointer items-center justify-center text-white/70 border'>
                                 X
                             </p>
                         </div>
+                        <section className='mt-2 w-full h-[25rem] flex justify-center items-center'>
+                            <div
+                                onClick={() => {
+
+                                }}
+
+                                className='cursor-pointer w-[50%] border border-dashed h-[12rem] rounded-3xl flex justify-center items-center'>
+                                <img src={Upload} className="w-[5rem] opacity-30"/>
+                            </div>
+                        </section>
                     </section>
-            </section>
+                            </section>
+            }
         </section>
     )
 }

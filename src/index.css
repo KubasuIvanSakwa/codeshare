@@ -27,6 +27,18 @@ html {
     background: linear-gradient(144deg,#af40ff,#4f46e5);
 }
 
+.upload:hover {
+    background: linear-gradient(144deg,#af40ff9f,#4e46e5b4);
+}
+
+.logout{
+    background: linear-gradient(144deg,#0707075d,#030303f5);
+}
+
+.logout:hover {
+    background: linear-gradient(144deg,#2b2a2a5d,#161616f5);
+}
+
 .close:hover::before {
     content: "x";
     position: absolute;
