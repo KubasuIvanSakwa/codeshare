@@ -23,6 +23,10 @@ html {
     border-radius: 10px;
 }
 
+.upload {
+    background: linear-gradient(144deg,#af40ff,#4f46e5);
+}
+
 .close:hover::before {
     content: "x";
     position: absolute;

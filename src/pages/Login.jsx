@@ -11,7 +11,7 @@ function Login() {
     const navigate = useNavigate()
 
     return (
-        <section className="relative flex flex-col w-fulf text-white h-[100vh] justify-center items-center bg-[#23272F]">
+        <section className="relative flex flex-col w-full text-white h-[100vh] justify-center items-center bg-[#23272F]">
         <section className="flex flex-col lg:border overflow-hidden relative p-3 h-[28rem] rounded-xl justify-center lg:w-[30%]">
             <form 
                 className="flex flex-col gap-2 h-[10rem] items-center" 
@@ -63,7 +63,10 @@ function Login() {
                 <hr className="border-[#909192]/80 w-[30%]" />
             </div>  
             <button 
-                // onClick={handleClick}
+                onClick={() => {
+                    navigate('/home/marketplace')
+                    localStorage.setItem('usertype', 'user1')
+                }}
                 className="rounded-full p-2 mt-4 w-[4rem] bg-none flex justify-center items-center self-center shadow-lg text-white/80  hover:bg-white/20 hover:text-white"
             >
                 <img src={googleLogo}/>
