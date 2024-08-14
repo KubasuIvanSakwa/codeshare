@@ -13,7 +13,8 @@ function MarketPlace() {
             <section className="pl-[5rem] h-[29rem] scroll-smooth overflow-x-hidden flex flex-wrap gap-4 overflow-y-scroll p-2">
             {data.map((pr, key) => (
                 <Card 
-                key={key} name={pr.contributorName} project={pr.name} descritpion={pr.description}/>        
+                    key={key} name={pr.contributorName} project={pr.name} descritpion={pr.description}
+                />        
             ))}
             </section>
         </section>

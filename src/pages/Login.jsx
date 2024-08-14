@@ -28,6 +28,7 @@ function Login() {
       try {
         const result = await signInWithPopup(auth, provider);
         const user = result.user;
+        localStorage.setItem('usertype', `${user}`)
         console.log('Signed in user:', user);
       } catch (error) {
         console.error('Google Sign-In failed:', error);
@@ -36,7 +37,7 @@ function Login() {
   
 
     return (
-        <section className="relative flex flex-col w-fulf text-white h-[100vh] justify-center items-center bg-[#23272F]">
+        <section className="relative flex flex-col w-full text-white h-[100vh] justify-center items-center bg-[#23272F]">
         <section className="flex flex-col lg:border overflow-hidden relative p-3 h-[28rem] rounded-xl justify-center lg:w-[30%]">
             <form 
                 className="flex flex-col gap-2 h-[10rem] items-center" 
