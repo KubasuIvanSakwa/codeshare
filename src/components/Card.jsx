@@ -1,10 +1,12 @@
 import Dropdown from "../../public/drop-down.svg"
+import Star from "../assets/star.svg"
 
 function Card({ name,  project, descritpion}) {
 
     return (
-        <div className="bg-[#2d3035] relative w-[22rem] border border-white/10 h-[12rem] rounded-lg flex flex-col">
-            <div className="flex p-2 gap-1">
+        <div className="bg-[#2d3035] relative w-[19rem] border border-white/10 h-[17rem] rounded-lg flex flex-col">
+            <div className="flex p-2 gap-1 justify-between">
+            <div className="flex gap-1">
                 <div className="circle">
                     <span className="relative cursor-pointer hover:close::before bg-teal-500 inline-block center w-3 h-3 rounded-full close"></span>
                 </div>
@@ -13,6 +15,12 @@ function Card({ name,  project, descritpion}) {
                 </div>
                 <div className="circle">
                     <span className="bg-indigo-500 box inline-block center w-3 h-3 rounded-full"></span>
+                </div>
+            </div>
+                <div>
+                <div className="relative w-[1.5rem]">
+                    <img src={Star} />
+                </div>
                 </div>
             </div>
             <div className="card__content z-10 overflow-hidden relative  h-[9rem]">
