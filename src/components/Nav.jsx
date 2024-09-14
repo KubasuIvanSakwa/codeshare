@@ -1,12 +1,17 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import dummyuser from '../../public/user.svg'
 import Dropdown from "../../public/drop-down.svg"
 import Upload from "../../public/upload.svg"
 import logout from "../../public/logout.svg"
+import { auth  } from './../../firebase-config';
+
+import { signOut } from 'firebase/auth';
+
 
 function Nav() {
     const user = localStorage.getItem('usertype')
     const location = useLocation()
+    const navigate = useNavigate()
 
     return (
         <nav className="">
@@ -32,7 +37,14 @@ function Nav() {
                     <li>  
                         <button
                             onClick={() => {
-                                
+                                signOut(auth)
+                                .then(() => {
+                                    navigate('/login')
+                                    localStorage.removeItem('usertype')
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                })
                             }}
                             className="logout inline-flex self-center gap-2 h-[2.6rem] relative w-[8rem] rounded-lg justify-center items-center shadow-lg"
                         >
@@ -65,6 +77,9 @@ function Nav() {
                                 location.pathname !== '/home/profile' &&  
                                 <Link
                                     to="/login"
+                                    onClick={() => {
+                                        localStorage.removeItem('usertype')
+                                    }}
                                     className="hover:bg-[#3f4041]/50 bg-[#3f4041] text-white p-2 w-fit rounded-lg inline-flex"
                                 >
                                     Sign In or Create Account
@@ -81,7 +96,7 @@ function Nav() {
                                 >
                                     <p className="hover:bg-[#3f4041]/50 bg-[#3f4041] text-white p-2 gap-2 w-fit rounded-l-lg inline-flex">
                                         <img src={Dropdown}/>
-                                        Kubasu Ivan Sakwa
+                                        {localStorage.getItem('usertype')}
                                     </p>
                                     <div className="bg-[#3f4041] p-1 rounded-r-lg"><img src={dummyuser}/></div>
                                 </Link>

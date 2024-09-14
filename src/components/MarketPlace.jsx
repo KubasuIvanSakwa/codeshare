@@ -2,6 +2,7 @@ import Card from "./Card"
 import Search from "./Search"
 import projects from '../../public/projects.js'
 
+
 function MarketPlace() {
     const data = projects
     const arrFromObj = Object.getOwnPropertyNames(data);
