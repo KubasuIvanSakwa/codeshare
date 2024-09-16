@@ -20,8 +20,10 @@ function MarketPlace() {
                 </section>
 
                 <section className="bg-yellow-500 snap-start snap-always flex h-[25rem] w-full gap-2 p-2">
-                    <div className={`${bgColor} border h-full w-[70%] rounded-xl`}>
-
+                    <div className={`${bgColor} bg-cover relative border h-full w-[70%] rounded-xl`}>
+                        <h1>Project name</h1>
+                        <h5>Date created</h5>
+                        <p>stars</p>
                     </div>
                     <div className="border flex-1 p-1">
                         <ul className="relative border border-red-400 w-full bg-white flex flex-col gap-2">
@@ -119,23 +121,7 @@ function MarketPlace() {
                             </li>
                         </ul>
                     </div>
-                </section>
-
-                <section className="snap-start snap-always bg-yellow-500 flex flex-col h-[18rem] w-full gap-2 p-1">
-                    <div className="w-full bg-white/60 flex justify-between">
-                        <h1>Discover More &gt;</h1>
-                        <p> &lt; &gt; </p>
-                    </div>
-                    <div className="w-full bg-red-500">
-                        <ul className="flex">
-                            <li className="border">11</li>
-                            <li className="border">11</li>
-                            <li className="border">11</li>
-                            <li className="border">11</li>
-                        </ul>
-                    </div>
-                </section>
-                
+                </section>                
             </section>
         </section>
     );

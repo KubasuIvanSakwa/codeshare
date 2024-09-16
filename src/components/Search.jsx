@@ -20,6 +20,10 @@ function Search() {
                     <div className="bg-[#4A4D54] rounded-r-[4rem]  w-[10%] flex justify-center items-center p-1"></div>
                 </div>
             </section>
+            <section className='w-[25%] flex-col p-2 hidden  h-[8rem] bg-[#4A4D54] border rounded-lg absolute top-[4rem] left-[12rem] z-100' style={{zIndex: 60}}>
+                <p>search</p>
+                <p>search</p>
+            </section>
         </>
     )
 }
