@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import googleLogo from "../assets/googleLogo.svg"
-import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from './../../firebase-config';
+import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from '../../firebase-config';
 import { signInWithEmailAndPassword } from "firebase/auth"
 
 function NewLogin() {
