@@ -11,7 +11,8 @@ import {
 
 
 import Loader from "./components/Loader"
-const Login = lazy(() => import('./pages/Login'))
+import NewLogin from "./pages/NewLogin"
+const Login = lazy(() => import("./pages/Description"))
 const Layout = lazy(() => import('./pages/Layout'))
 const Signup = lazy(() => import('./pages/Signup'))
 const Landingpage = lazy(() => import('./pages/Landingpage'))
@@ -29,7 +30,7 @@ function App() {
         <Route path="marketplace" element={<MarketPlace />} />
         <Route path="profile" element={<Profile />} />
       </Route>
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<NewLogin />} />
       <Route path="/signup" element={<Signup />} />
     </Route>
   ))

@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import googleLogo from "../assets/googleLogo.svg"
 import { auth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from './../../firebase-config';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth"
+
+function NewLogin() {
 
 
-
-function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -36,8 +36,6 @@ function Login() {
             console.error('Google Sign-In failed:', error)
         }
     };
-
-
 
 
     return (
@@ -128,4 +126,4 @@ function Login() {
     )
 }
 
-export default Login
+export default NewLogin
