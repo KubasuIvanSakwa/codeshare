@@ -1,7 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import dummyuser from '../../public/user.svg'
 import Dropdown from "../../public/drop-down.svg"
-import Upload from "../../public/upload.svg"
 import logout from "../../public/logout.svg"
 import { auth  } from './../../firebase-config';
 
@@ -12,6 +11,8 @@ function Nav() {
     const user = localStorage.getItem('usertype')
     const location = useLocation()
     const navigate = useNavigate()
+
+    const userPhoto = localStorage.getItem('userpic')
 
     return (
         <nav className="">
@@ -41,6 +42,8 @@ function Nav() {
                                 .then(() => {
                                     navigate('/login')
                                     localStorage.removeItem('usertype')
+                                    localStorage.removeItem('userpic')
+                                    localStorage.removeItem('userId')
                                 })
                                 .catch((error) => {
                                     console.log(error);
@@ -54,21 +57,20 @@ function Nav() {
                     </li>
                 }
 
-                { 
-                    user !== 'guest' &&  location.pathname !== '/home/profile' &&
+                {/* { 
+                    user !== 'guest' &&  location.pathname !== '/home/marketplace' &&
                     <li>  
                         <Link
-                            to="/home/profile"
                             className="upload inline-flex self-center gap-2 h-[2.6rem] relative w-[8rem] rounded-lg justify-center items-center"
                             onClick={() => {
-                                localStorage.setItem('displayUpload','show')
+                                setToggleShowUpload(true)
                             }}
                         >
                             <img src={Upload} className="w-[1.4rem]"/>
                             <p>upload</p>
                         </Link>
                     </li>
-                }
+                } */}
 
                 {
                     user === 'guest' ? 
@@ -98,7 +100,13 @@ function Nav() {
                                         <img src={Dropdown}/>
                                         {localStorage.getItem('usertype')}
                                     </p>
-                                    <div className="bg-[#3f4041] p-1 rounded-r-lg"><img src={dummyuser}/></div>
+                                    <div className="bg-[#3f4041] relative overflow-hidden w-[2.7rem] h-[2.6rem] p-1 rounded-r-lg">
+                                        {userPhoto ? 
+                                            <img className="rounded-full w-full h-full" src={userPhoto}/>
+                                            :
+                                            <img src={dummyuser}/>
+                                        }
+                                    </div>
                                 </Link>
                         }
                     </li>

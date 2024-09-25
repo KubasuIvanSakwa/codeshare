@@ -25,8 +25,8 @@ function Signup() {
                     email,
                     password,
                 )
-                console.log(userCredential)
                 localStorage.setItem('usertype', email)
+                localStorage.setItem('userId', userCredential._tokenResponse.localId)
                 navigate('/login')
             } catch (error) {
                 if(error.code == 'auth/email-already-in-use') {
