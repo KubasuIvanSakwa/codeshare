@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 
 const placeholderExtension = placeholder('// it starts with one line of code')
 
-function Card({ category, code, createdAt, index }) {
+function Card({ title, code, createdAt, index }) {
 
     const [codes, setCodes] = useState('')
 
@@ -41,7 +41,7 @@ function Card({ category, code, createdAt, index }) {
             </div>
             <div className="card__content z-10 overflow-hidden relative  h-[9rem]">
                 <div className="p-2 flex flex-col gap-1">
-                    <h1 className="text-white font-extrabold self-center">{category ? `${category}` : 'global'}</h1>
+                    <h1 className="text-white font-extrabold self-center">{title ? `${title}` : 'no title'}</h1>
                         {/* CodeMirror editor */}
             <CodeMirror
                 value={code}
@@ -106,7 +106,7 @@ function Card({ category, code, createdAt, index }) {
                 onClick={() => {
                     localStorage.setItem('tog', 'true')
                     localStorage.setItem('code', code)
-                    localStorage.setItem('category', category)
+                    localStorage.setItem('title', title)
                     window.location.reload()
                 }}
                 className="bg-[#2d3035] hover:bg-[#505253] border-white/40 flex items-center text-white rounded-full pl-2 gap-2 border pr-2 absolute bottom-4 self-center z-50"

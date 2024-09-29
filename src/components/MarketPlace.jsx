@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import Card from "./Card"
-import Search from "./Search"
 import { collection, getDocs } from "firebase/firestore"
 import { db } from '../../firebase-config'
 import CodeMirror from '@uiw/react-codemirror' // Correct default import
@@ -9,6 +8,7 @@ import { oneDark } from '@codemirror/theme-one-dark' // Dark theme
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { placeholder } from '@codemirror/view'
 import { FaClipboard, FaCheck } from 'react-icons/fa'
+import SearchLogo from '../../public/search-svg.svg'
 
 const placeholderExtension = placeholder('// it starts with one line of code')
 
@@ -17,17 +17,34 @@ function MarketPlace() {
     const [toggleShowUpload, setToggleShowUpload] = useState(false)
     const [codes, setCodes] = useState('')
     const [fetchedProjects, setFetchedProjects] = useState([]) // State to store fetched projects
+    const [filteredProj, setFilteredProj] = useState([]) // State to store fetched projects
+    const [searchParam, setSearchParam] = useState({
+        "value": ''
+    })
 
 
     const show = localStorage.getItem('tog')
     const code = localStorage.getItem('code')
-    const category = localStorage.getItem('category')
+    const title = localStorage.getItem('title')
 
     useEffect(() => {
         if(show) {
             setToggleShowUpload(true)
         }
     }, [show])
+
+    useEffect(() => {
+        if (searchParam.value?.trim() === "") {
+          // Show all projects if no search term
+          setFilteredProj(fetchedProjects);
+        } else {
+          const filtered = fetchedProjects.filter((item) =>
+            item.title?.toLowerCase().includes(searchParam?.toLowerCase())
+          );
+          setFilteredProj(filtered);
+        }
+      }, [searchParam, fetchedProjects])
+    console.log(filteredProj)
 
     // Fetch data from Firestore
     async function getCode() {
@@ -56,13 +73,28 @@ function MarketPlace() {
 
     return (
         <section className="p-1 relative h-fit overflow-y-hidden w-full flex flex-col gap-2">
-            <Search />
-            <button onClick={() => getCode()} className="relative top-[-3.5rem] right-[-38rem] underline text-white/60">refresh</button> {/* Option to manually refresh the data */}
+            <section className="relative z-50 p-2 w-full flex cursor-pointer">
+                <div className="flex w-[40%] justify-center h-[3.2rem] p-1 ">
+                    <div className="bg-[#4A4D54] rounded-l-[4rem]  w-[8%] flex justify-center items-center p-3">
+                        <img src={SearchLogo} alt="S"/>
+                    </div>
+                    <input onChange={(e) => setSearchParam(e.target.value)} placeholder='Search title' className="w-[30%] outline-none p-1 bg-[#4A4D54] text-white placeholder:text-white/50 cursor-pointer"/>
+                    <div className="bg-[#4A4D54] rounded-r-[4rem]  w-[10%] flex justify-center items-center p-1"></div>
+                </div>
+            </section>
+            <section className='w-[25%] flex-col p-2 hidden  h-[8rem] bg-[#4A4D54] border rounded-lg absolute top-[4rem] left-[12rem] z-100' style={{zIndex: 60}}>
+                <p>search</p>
+                <p>search</p>
+            </section>
+            <button onClick={() => {
+                getCode()
+                window.location.reload()
+            }} className="relative top-[-3.5rem] right-[-38rem] underline text-white/60">refresh</button> {/* Option to manually refresh the data */}
             <section className="lg:ml-[10rem] mr-[10rem] h-[29rem] scroll-smooth overflow-x-hidden flex flex-wrap gap-4 overflow-y-scroll p-2">
                 
                 <section className="flex flex-wrap min-h-fit w-full p-2 gap-2">
-                {fetchedProjects.map((proj, index) => (
-                    <Card key={index} code={JSON.parse(proj.code)} index={proj.id} createdAt={proj.createdAt} category={proj.cat}/>
+                {filteredProj.map((proj, index) => (
+                    <Card key={index} code={JSON.parse(proj.code)} index={proj.id} createdAt={proj.createdAt} title={proj.title}/>
                 ))}
                 </section>            
             </section>
@@ -78,7 +110,7 @@ function MarketPlace() {
                             setToggleShowUpload(false)
                             localStorage.removeItem('tog')
                             localStorage.removeItem('code')
-                            localStorage.removeItem('category')
+                            localStorage.removeItem('title')
                             }}
                         className=' w-[2rem] h-[2rem] rounded-full p-1 flex hover:bg-white/20 cursor-pointer items-center justify-center text-white/70 border'>
                         X

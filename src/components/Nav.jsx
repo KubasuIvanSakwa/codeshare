@@ -41,9 +41,7 @@ function Nav() {
                                 signOut(auth)
                                 .then(() => {
                                     navigate('/login')
-                                    localStorage.removeItem('usertype')
-                                    localStorage.removeItem('userpic')
-                                    localStorage.removeItem('userId')
+                                    localStorage.clear()
                                 })
                                 .catch((error) => {
                                     console.log(error);

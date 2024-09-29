@@ -17,7 +17,6 @@ const CodeEditor = () => {
     const userId = localStorage.getItem('userId')
 
     const codeKey = 'code-local-Storage-key'
-    const Category = localStorage.getItem('cat')
     
     useEffect(() => {
         const data = localStorage.getItem(codeKey)
@@ -45,11 +44,13 @@ const CodeEditor = () => {
         try {
             const docRef = await addDoc(collection(db, "codes"), {
                 code: codeText,
-                cat: Category,
+                title: localStorage.getItem('title'),
                 userId: localStorage.getItem('userId'),
                 createdAt: serverTimestamp()
             })
             setUploaded('uploaded')
+            localStorage.removeItem('title')
+            localStorage.removeItem('codeKey')
         } catch (e) {
             console.error("Error adding document: ", e)
             setUploaded('error!')

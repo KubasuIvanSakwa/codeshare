@@ -1,11 +1,12 @@
 import Upload from '../../public/upload.svg'
 import Reactlogo from '../../public/reactlogo.svg'
 import Card from '../components/Card'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import CodeEditor from '../components/CodeEditor'
 import { auth } from './../../firebase-config';
 import { updateProfile } from 'firebase/auth'
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { SiTruenas } from 'react-icons/si'
 
 function Profile() {
     const uploadRef = useRef(null)
@@ -13,9 +14,10 @@ function Profile() {
     const [toggleImageUploader, setToggleImageUploader] = useState(false)
     const [toggleShowUpload, setToggleShowUpload] = useState(false)
     const [displayName, setDislayName] = useState('')
-    const [cat, setCat] = useState('')
+    const [title, setTitle] = useState('')
     const [displayPicture, setDislayPicture] = useState(null)
     const [profilePicURL, setProfilePicURL] = useState('')
+    const [saveTitle, setSaveTitle] = useState(false)
 
     const storage = getStorage(); // Initialize Firebase storage
 
@@ -97,7 +99,9 @@ function Profile() {
                     </div>
 
                     <div
-                        onClick={() => setToggleShowUpload(true)}
+                        onClick={() => {
+                            setToggleShowUpload(true) 
+                        }}
                         title='upload'
                         className='cursor-pointer w-[20%] bg-[#434A56] h-[12rem] rounded-3xl flex justify-center items-center'>
                         <img src={Upload} className="w-[5rem] opacity-60"/>
@@ -126,7 +130,10 @@ function Profile() {
                     <section className="relative overflow-hidden w-[80%] rounded-3xl bg-[#23272F] shadow-lg border border-white/20">
                         <div className='flex w-full pt-2 justify-end pr-2 font-extrabold'>
                             <p 
-                                onClick={() => setToggleShowUpload(false)}
+                                onClick={() => {
+                                    setToggleShowUpload(false)
+                                    setSaveTitle(false)
+                                }}
                                 className=' w-[2rem] h-[2rem] rounded-full p-1 flex hover:bg-white/20 cursor-pointer items-center justify-center text-white/70 border'>
                                 X
                             </p>
@@ -142,13 +149,14 @@ function Profile() {
                                         setToggleImageUploader(false)
                                     }}
                                 >Code snippets?</button>
-                            <input onChange={(e) => setCat(e.target.value)} placeholder='category' className='border m-1 text-lg rounded-full p-1 border-white/20 text-white/60 pl-3 w-[12rem] placeholder-[#cbccce]/40 bg-[#11141A] outline-none'/>
+                            <input onChange={(e) => setTitle(e.target.value)} placeholder='title' className='border m-1 text-lg rounded-full p-1 border-white/20 text-white/60 pl-3 w-[12rem] placeholder-[#cbccce]/40 bg-[#11141A] outline-none'/>
                             <button
-                                className='text-white/60 underline'
+                                className={`${saveTitle ? 'text-green-400' : 'text-white/60'} underline`}
                                 onClick={() => {
-                                    localStorage.setItem('cat', cat)
+                                    localStorage.setItem('title', title)
+                                    setSaveTitle(true)
                                 }}
-                            >save Category</button>
+                            >{saveTitle ? 'saved' : 'save title'}</button>
                             </div>
                             <div
                                 className='uploadArea border-black w-full flex-1 p-2'
